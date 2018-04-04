@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private LatLng m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         message = message.replaceAll("\\s+","+");
@@ -64,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double lat = location.getDouble("lat");
                     double lng = location.getDouble("lng");
                     LatLng marker = new LatLng(lat, lng);
+                    m = marker;
                     String title = "Coordinates";
                     String snippet = "(" + lat + "°, " + lng + "°)";
                     mMap.addMarker(new MarkerOptions().position(marker).title(title).snippet(snippet));
@@ -82,5 +84,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
+    }
+
+    public void recenter(View view) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(m, 15.0f));
     }
 }
