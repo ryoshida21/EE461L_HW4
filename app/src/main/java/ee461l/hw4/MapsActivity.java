@@ -41,6 +41,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        message.replaceAll("\\s+","+");
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + message + "&key=AIzaSyBKln8H1IeuL8Us07YU7pGiF2KXHjBWAMc";
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
