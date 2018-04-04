@@ -13,4 +13,9 @@
         android:layout_height="wrap_content"
         android:text="See Map"
         android:onClick="goToMap"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See Weather"
+        android:onClick="showWeather"/>
 </LinearLayout>
