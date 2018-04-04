@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.d("MAP", "Inside onResponse");
                     JSONObject jsonObject = new JSONObject(response);
                     JSONObject obj = jsonObject.getJSONArray("results").getJSONObject(0);
                     JSONObject location = obj.getJSONObject("geometry").getJSONObject("location");
@@ -70,12 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("ERROR", "Error");
-            }
-        });
+        }, null);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }
@@ -96,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     int humidity = object.getJSONObject("main").getInt("humidity");
                     int wind = (int) object.getJSONObject("wind").getDouble("speed");
                     String icon_url = "http://openweathermap.org/img/w/" + weather.getString("icon") + ".png";
-                    Log.d("WEATHERICON", icon_url);
                     TextView descriptionText = findViewById(R.id.description_text);
                     descriptionText.setText(description);
                     TextView tempText = findViewById(R.id.temp_text);
@@ -107,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                     humidityText.setText(String.format("Humidity: %d%%", humidity));
                     TextView windText = findViewById(R.id.wind_text);
                     windText.setText(String.format("Wind: %d mph", wind));
-                    Log.d("WEATHERICON", "onResponse: ");
                     getWeatherIcon(icon_url);
 
 
@@ -116,31 +108,20 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("ERROR", "Error");
-            }
-        });
+        }, null);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(request);
 
     }
 
     public void getWeatherIcon(String url) {
-        Log.d("WEATHERICON", "in getWeatherIcon");
         final ImageView view = findViewById(R.id.weathericon);
         ImageRequest request = new ImageRequest(url, new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
                 view.setImageBitmap(response);
             }
-        }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("ERROR", "something went wrong");
-            }
-        });
+        }, 0, 0, ImageView.ScaleType.CENTER, null, null);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(request);
     }
