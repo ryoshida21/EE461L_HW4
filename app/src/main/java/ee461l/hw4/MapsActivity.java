@@ -64,9 +64,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double lat = location.getDouble("lat");
                     double lng = location.getDouble("lng");
                     LatLng marker = new LatLng(lat, lng);
-                    String title = "Marked address at lat: " + lat + " and lng: " + lng;
+                    String title = "lat: " + lat + " lng: " + lng;
                     mMap.addMarker(new MarkerOptions().position(marker).title(title));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 15.0f));
 
 
                 } catch (JSONException e) {
