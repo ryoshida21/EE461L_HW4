@@ -1,16 +1,19 @@
 package ee461l.hw4;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -92,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
                     int max_temp = (int) object.getJSONObject("main").getDouble("temp_max");
                     int humidity = object.getJSONObject("main").getInt("humidity");
                     int wind = (int) object.getJSONObject("wind").getDouble("speed");
+                    String icon_url = "http://openweathermap.org/img/w/" + weather.getString("icon") + ".png";
+                    Log.d("WEATHERICON", icon_url);
                     TextView descriptionText = findViewById(R.id.description_text);
                     descriptionText.setText(description);
                     TextView tempText = findViewById(R.id.temp_text);
@@ -102,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
                     humidityText.setText(String.format("Humidity: %d%%", humidity));
                     TextView windText = findViewById(R.id.wind_text);
                     windText.setText(String.format("Wind: %d mph", wind));
+                    Log.d("WEATHERICON", "onResponse: ");
+                    getWeatherIcon(icon_url);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -117,6 +125,24 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(request);
 
+    }
+
+    public void getWeatherIcon(String url) {
+        Log.d("WEATHERICON", "in getWeatherIcon");
+        final ImageView view = findViewById(R.id.weathericon);
+        ImageRequest request = new ImageRequest(url, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                view.setImageBitmap(response);
+            }
+        }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("ERROR", "something went wrong");
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(request);
     }
 
 }
