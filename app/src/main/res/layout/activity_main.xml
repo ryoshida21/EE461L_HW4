@@ -2,20 +2,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-    <EditText android:id="@+id/edit_message"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter Location"/>
-    <Button
+    android:orientation="vertical" >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="See Map"
-        android:onClick="goToMap"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="See Weather"
-        android:onClick="showWeather"/>
+        android:orientation="horizontal" >
+        <EditText android:id="@+id/edit_message"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt"/>
+        <Button android:id="@+id/mapbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map"
+            android:onClick="buttonClicked"/>
+        <Button android:id="@+id/weatherbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather"
+            android:onClick="buttonClicked"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="32sp"
+            android:gravity="center"/>
+
+        <TextView android:id="@+id/temp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="32sp"
+            android:gravity="center"/>
+
+        <TextView android:id="@+id/humidity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="32sp"
+            android:gravity="center"/>
+
+        <TextView android:id="@+id/wind_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="32sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
 </LinearLayout>
+
+

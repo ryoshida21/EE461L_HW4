@@ -52,38 +52,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        message = message.replaceAll("\\s+","+");
-        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + message + "&key=AIzaSyBKln8H1IeuL8Us07YU7pGiF2KXHjBWAMc";
-        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONObject obj = jsonObject.getJSONArray("results").getJSONObject(0);
-                    JSONObject location = obj.getJSONObject("geometry").getJSONObject("location");
-                    double lat = location.getDouble("lat");
-                    double lng = location.getDouble("lng");
-                    LatLng marker = new LatLng(lat, lng);
-                    m = marker;
-                    String title = "Coordinates";
-                    String snippet = "(" + lat + "°, " + lng + "°)";
-                    mMap.addMarker(new MarkerOptions().position(marker).title(title).snippet(snippet));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 15.0f));
+        double lat = intent.getDoubleExtra(MainActivity.EXTRA_LAT, 0);
+        double lng = intent.getDoubleExtra(MainActivity.EXTRA_LNG, 0);
+
+        LatLng marker = new LatLng(lat, lng);
+        m = marker;
+        String title = "Coordinates";
+        String snippet = "(" + lat + "°, " + lng + "°)";
+        mMap.addMarker(new MarkerOptions().position(marker).title(title).snippet(snippet));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 15.0f));
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("ERROR", "Error");
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(stringRequest);
     }
 
     public void recenter(View view) {
