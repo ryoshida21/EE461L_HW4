@@ -62,10 +62,25 @@
         android:shadowDy="1"
         />
 
-    <TextView android:id="@+id/humidity_text"
+    <TextView android:id="@+id/temp_max_min_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/temp_text"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#39b0ff"
+        android:shadowColor="#000000"
+        android:shadowRadius="2"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        />
+
+    <TextView android:id="@+id/humidity_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temp_max_min_text"
         android:layout_marginTop="20dp"
         android:textSize="25sp"
         android:gravity="center"

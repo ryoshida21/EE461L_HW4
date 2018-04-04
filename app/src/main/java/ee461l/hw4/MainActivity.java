@@ -88,12 +88,16 @@ public class MainActivity extends AppCompatActivity {
                     String description = weather.getString("description");
 
                     int temp = (int) object.getJSONObject("main").getDouble("temp");
+                    int min_temp = (int) object.getJSONObject("main").getDouble("temp_min");
+                    int max_temp = (int) object.getJSONObject("main").getDouble("temp_max");
                     int humidity = object.getJSONObject("main").getInt("humidity");
                     int wind = (int) object.getJSONObject("wind").getDouble("speed");
                     TextView descriptionText = findViewById(R.id.description_text);
                     descriptionText.setText(description);
                     TextView tempText = findViewById(R.id.temp_text);
                     tempText.setText(String.format("Temperature: %d°", temp));
+                    TextView tempMinMaxText = findViewById(R.id.temp_max_min_text);
+                    tempMinMaxText.setText(String.format("Max: %d° Min: %d°", max_temp, min_temp));
                     TextView humidityText = findViewById(R.id.humidity_text);
                     humidityText.setText(String.format("Humidity: %d%%", humidity));
                     TextView windText = findViewById(R.id.wind_text);
