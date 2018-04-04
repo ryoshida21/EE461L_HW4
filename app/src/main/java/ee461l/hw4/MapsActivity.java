@@ -61,12 +61,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String snippet = "(" + lat + "°, " + lng + "°)";
         mMap.addMarker(new MarkerOptions().position(marker).title(title).snippet(snippet));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 15.0f));
-
-
     }
 
     public void recenter(View view) {
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(m, 15.0f));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(m, 15.0f));
+        if (m != null) {
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(m, 15.0f));
+        }
     }
 }
