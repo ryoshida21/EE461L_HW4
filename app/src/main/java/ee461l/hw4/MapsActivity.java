@@ -66,6 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void recenter(View view) {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(m, 15.0f));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(m, 15.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(m, 15.0f));
     }
 }
