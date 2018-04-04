@@ -1,93 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <EditText android:id="@+id/edit_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt"/>
+    <Button android:id="@+id/mapbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        <EditText android:id="@+id/edit_message"
-            android:layout_weight="1"
-            android:layout_width="500sp"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt"/>
-        <Button android:id="@+id/mapbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/map"
-            android:onClick="buttonClicked"/>
-        <Button android:id="@+id/weatherbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/weather"
-            android:onClick="buttonClicked"/>
-    </LinearLayout>
+        android:layout_below="@id/edit_message"
+        android:layout_alignParentStart="true"
+        android:text="@string/map"
+        android:onClick="buttonClicked"/>
+    <Button android:id="@+id/weatherbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_message"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/mapbutton"
+        android:text="@string/weather"
+        android:onClick="buttonClicked"/>
 
-    <LinearLayout
+
+    <TextView android:id="@+id/description_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weatherbutton"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#ff4632"
+        android:shadowColor="#000000"
+        android:shadowRadius="2"
+        android:shadowDx="1"
+        android:shadowDy="1"/>
 
-        <TextView android:id="@+id/description_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="#ff4632"
-            android:shadowColor="#000000"
-            android:shadowRadius="2"
-            android:shadowDx="1"
-            android:shadowDy="1"/>
+    <TextView android:id="@+id/temp_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description_text"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#39b0ff"
+        android:shadowColor="#000000"
+        android:shadowRadius="2"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        />
 
-        <TextView android:id="@+id/temp_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginTop="-210dip"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="#39b0ff"
-            android:shadowColor="#000000"
-            android:shadowRadius="2"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            />
+    <TextView android:id="@+id/humidity_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temp_text"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#39b0ff"
+        android:shadowColor="#000000"
+        android:shadowRadius="2"
+        android:shadowDx="1"
+        android:shadowDy="1"/>
 
-        <TextView android:id="@+id/humidity_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginTop="-410dip"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="#39b0ff"
-            android:shadowColor="#000000"
-            android:shadowRadius="2"
-            android:shadowDx="1"
-            android:shadowDy="1"/>
+    <TextView android:id="@+id/wind_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/humidity_text"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#39b0ff"
+        android:shadowColor="#000000"
+        android:shadowRadius="2"
+        android:shadowDx="1"
+        android:shadowDy="1"/>
 
-        <TextView android:id="@+id/wind_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginTop="-610dip"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="#39b0ff"
-            android:shadowColor="#000000"
-            android:shadowRadius="2"
-            android:shadowDx="1"
-            android:shadowDy="1"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
 
 
